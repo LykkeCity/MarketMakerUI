@@ -141,6 +141,15 @@ namespace LykkeMarketMakers.Web.Translates {
         }
         
         /// <summary>
+        ///    Looks up a localized string similar to Change password.
+        /// </summary>
+        public static string ChangePassword {
+            get {
+                return ResourceManager.GetString("ChangePassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///    Looks up a localized string similar to Change access password.
         /// </summary>
         public static string ChangeTheAccessPassword {
@@ -164,6 +173,15 @@ namespace LykkeMarketMakers.Web.Translates {
         public static string EditUser {
             get {
                 return ResourceManager.GetString("EditUser", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///    Looks up a localized string similar to Error changing password.
+        /// </summary>
+        public static string ErrorChangePassword {
+            get {
+                return ResourceManager.GetString("ErrorChangePassword", resourceCulture);
             }
         }
         

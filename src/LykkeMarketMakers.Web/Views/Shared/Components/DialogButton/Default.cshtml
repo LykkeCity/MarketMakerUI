@@ -9,5 +9,10 @@
 }
 
 <button class="btn @Model.ButtonClasses" onclick="@command">
-    <span class="glyphicon @Model.IconClasses" aria-hidden="true"></span> @Model.ButtonText
+    @if (Model.HasIcon)
+    {
+        <span class="glyphicon @Model.IconClasses" aria-hidden="true"></span>
+    }
+
+    @Model.ButtonText
 </button>

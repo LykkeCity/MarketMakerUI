@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using System.Linq;
 using LykkeMarketMakers.Core.DomainModels;
 using LykkeMarketMakers.Core.Enums;
+using LykkeMarketMakers.Web.Controllers;
 using LykkeMarketMakers.Web.Filters;
 using LykkeMarketMakers.Web.Translates;
 
@@ -15,7 +16,7 @@ namespace LykkeMarketMakers.Web.Areas.Management.Controllers
     [Authorize]
     [Area("Management")]
     [FilterFeaturesAccess(UserFeatureAccess.MenuUsers)]
-    public class UsersController : Web.Controllers.BaseController
+    public class UsersController : BaseController
     {
         public UsersController(
             IBackOfficeUsersRepository usersRepository, 
@@ -96,5 +97,54 @@ namespace LykkeMarketMakers.Web.Areas.Management.Controllers
 
             return JsonRequestResult("#pamain", Url.Action("Index"));
         }
+
+        [HttpPost]
+        public ActionResult ChangePasswordDialog(string id)
+        {
+            var model = new ChangePasswordDialogViewModel
+            {
+                UserId = id,
+                Caption = Phrases.ChangePassword,
+                Width = "555px"
+            };
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> ChangeUserPassword(ChangePasswordModel model)
+        {
+            if (string.IsNullOrEmpty(model.NewPassword))
+            {
+                return JsonFailResult(Phrases.FieldShouldNotBeEmpty, "#newPassword");
+            }
+
+            if (string.IsNullOrEmpty(model.PasswordConfirmation))
+            {
+                return JsonFailResult(Phrases.FieldShouldNotBeEmpty, "#passwordConfirmation");
+            }
+
+            if (model.NewPassword != model.PasswordConfirmation)
+            {
+                return JsonFailResult(Phrases.PasswordsDoNotMatch, "#passwordConfirmation");
+            }
+
+            bool result;
+
+            try
+            {
+                await UsersRepository.ChangePasswordAsync(model.UserId, model.NewPassword);
+                result = true;
+            }
+            catch
+            {
+                result = false;
+            }
+
+            return result
+                ? JsonResultCloseDialog()
+                : JsonFailResult(Phrases.ErrorChangePassword, "#btnChangePassword"); ;
+        }
+
     }
 }

@@ -26,8 +26,8 @@ namespace LykkeMarketMakers.Web.Controllers
 
         protected JsonResult JsonFailResult(string message, string div, ErrorPlaceholder placeholder = ErrorPlaceholder.Top)
         {
-            return placeholder == ErrorPlaceholder.Top 
-                ? new JsonResult(new { status = "Fail", msg = message, divError = div }) 
+            return placeholder == ErrorPlaceholder.Top
+                ? new JsonResult(new { status = "Fail", msg = message, divError = div })
                 : new JsonResult(new { status = "Fail", msg = message, divError = div, placement = placeholder.ToString().ToLower() });
         }
 
@@ -55,6 +55,11 @@ namespace LykkeMarketMakers.Web.Controllers
         public JsonResult JsonRefreshLast()
         {
             return new JsonResult(new { status = "refreshLast" });
+        }
+
+        public static JsonResult JsonResultCloseDialog()
+        {
+            return new JsonResult(new { status = "CloseDialog" });
         }
 
         public string GetSession()

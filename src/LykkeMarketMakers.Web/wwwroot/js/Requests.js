@@ -130,6 +130,10 @@ var Requests = (function () {
                 window.location = result.Url;
             return;
         }
+        if (result.status === 'CloseDialog') {
+            this.ui.hideDialog();
+            return;
+        }
         if (o.divResult) {
             if (o.replaceDiv) {
                 $(o.divResult).replaceWith(result);

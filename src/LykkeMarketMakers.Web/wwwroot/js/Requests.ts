@@ -195,6 +195,11 @@ class Requests {
             return;
         }
 
+        if (result.status === 'CloseDialog') {
+            this.ui.hideDialog();
+            return;
+        }
+
         if (o.divResult) {
 
             if (o.replaceDiv) {

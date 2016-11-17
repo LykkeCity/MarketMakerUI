@@ -207,4 +207,10 @@
   <data name="IsAdmin" xml:space="preserve">
     <value>Is admin</value>
   </data>
+  <data name="ChangePassword" xml:space="preserve">
+    <value>Change password</value>
+  </data>
+  <data name="ErrorChangePassword" xml:space="preserve">
+    <value>Error changing password</value>
+  </data>
 </root>

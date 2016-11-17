@@ -207,4 +207,10 @@
   <data name="IsAdmin" xml:space="preserve">
     <value>Администратор</value>
   </data>
+  <data name="ChangePassword" xml:space="preserve">
+    <value>Смена пароля</value>
+  </data>
+  <data name="ErrorChangePassword" xml:space="preserve">
+    <value>Ошибка при смене пароля</value>
+  </data>
 </root>

@@ -11,6 +11,9 @@
     .table .btn {
         margin: 0;
     }
+    .table .btn + .btn {
+        margin-left: 10px;
+    }
 </style>
 <h1>@Phrases.Users</h1>
 <div>
@@ -33,7 +36,7 @@
             <th>@Phrases.FullName</th>
             <th>@Phrases.Roles</th>
             <th style="width: 100px;" class="text-center">Admin</th>
-            <th style="width: 50px;"></th>
+            <th style="width: 200px;"></th>
         </tr>
     </thead>
     <tbody>
@@ -59,16 +62,30 @@
                     @if (user.Id != "admin")
                     {
                         @(await Component.InvokeAsync(nameof(DialogButton), new
+                        {
+                            model = new DialogButtonModel
                             {
-                                model = new DialogButtonModel
-                                {
-                                    Url = Url.Action("EditDialog"),
-                                    Id = user.Id
-                                }
-                            })
-                        )
+                                Url = Url.Action("EditDialog"),
+                                Id = user.Id
+                            }
+                        }))
+
+                        @(await Component.InvokeAsync(nameof(DialogButton), new
+                        {
+                            model = new DialogButtonModel
+                            {
+                                Url = Url.Action("ChangePasswordDialog"),
+                                Id = user.Id,
+                                ButtonClasses = "btn-link btn-xs",
+                                ButtonText = Phrases.ChangePassword,
+                                HasIcon = false
+                            }
+                        }))
                     }
                 </td>
+
+
+
             </tr>
         }
     </tbody>
