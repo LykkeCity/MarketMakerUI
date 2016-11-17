@@ -23,7 +23,6 @@ namespace LykkeMarketMakers.Web.Filters
 
             if (userId == null)
             {
-                
                 filterContext.Result = new UnauthorizedResult();
             }
             else

@@ -10,6 +10,7 @@ using LykkeMarketMakers.Core.Enums;
 using LykkeMarketMakers.Web.Controllers;
 using LykkeMarketMakers.Web.Filters;
 using LykkeMarketMakers.Web.Translates;
+using LykkeMarketMakers.Web.Services;
 
 namespace LykkeMarketMakers.Web.Areas.Management.Controllers
 {
@@ -18,10 +19,14 @@ namespace LykkeMarketMakers.Web.Areas.Management.Controllers
     [FilterFeaturesAccess(UserFeatureAccess.MenuUsers)]
     public class UsersController : BaseController
     {
+        private readonly IUserCacheService _userCacheService;
+
         public UsersController(
             IBackOfficeUsersRepository usersRepository, 
-            IBackofficeUserRolesRepository userRolesRepository) : base(usersRepository, userRolesRepository)
+            IBackofficeUserRolesRepository userRolesRepository,
+            IUserCacheService userCacheService) : base(usersRepository, userRolesRepository)
         {
+            _userCacheService = userCacheService;
         }
 
         [HttpPost]
@@ -88,6 +93,7 @@ namespace LykkeMarketMakers.Web.Areas.Management.Controllers
                 }
 
                 await UsersRepository.CreateAsync(model, model.Password);
+                await _userCacheService.UpdateUsersAndRoles();
 
             }
             else
