@@ -1,0 +1,71 @@
+﻿@using System.Threading.Tasks
+@using LykkeMarketMakers.Web.Models.ViewComponentsViewModels
+@using LykkeMarketMakers.Web.Translates
+@using LykkeMarketMakers.Web.ViewComponents
+@model LykkeMarketMakers.Web.Areas.Management.Models.EditUserDialogViewModel
+
+@{
+    Layout = "~/Views/Shared/_ModalDialogLayout.cshtml";
+}
+
+<form id="frmEditUser">
+    <table style="width:100%">
+        <tr>
+            <td>
+                @if (string.IsNullOrEmpty(Model.User.Id))
+                {
+                    <div class="form-group">
+                        <label class="control-label">Login:</label>
+                        <input id="id" name="Id" class="form-control setCursor input-lg" placeholder="Login" value="@Model.User.Id" />
+                    </div>
+
+                    <input name="Create" value="1" type="hidden" />
+                }
+                else
+                {
+                    <input name="Id" value="@Model.User.Id" type="hidden" />
+                }
+
+                <div class="form-group">
+                    <label class="control-label">@Phrases.FullName:</label>
+                    <input id="fullName" name="FullName" class="form-control input-lg" placeholder="@Phrases.FullName" value="@Model.User.FullName" />
+                </div>
+
+                @if (string.IsNullOrEmpty(Model.User.Id))
+                {
+                    <div class="form-group">
+                        <label class="control-label">@Phrases.Password:</label>
+                        <input id="password" name="Password" class="form-control input-lg" placeholder="@Phrases.Password" />
+                    </div>
+                }
+
+                <div class="form-group">
+                    <label class="control-label">@Phrases.Roles</label>
+                    @(await Component.InvokeAsync(nameof(Select), new
+                      {
+                          model = new SelectModel
+                          {
+                              Name = "Roles",
+                              IsMultiple = true,
+                              Values = Model.Roles.Select(role => new KeyValuePair<string, string>(role.Key, role.Value.Name)).ToList(),
+                              CurrentValues = Model.User.Roles
+                          }
+                      }))
+                </div>
+                
+                <div class="form-group">
+                    <input type="checkbox" name="IsAdmin" checked="@(Model.User.IsAdmin ? "checked" : null)" /> @Phrases.IsAdmin
+                </div>
+            </td>
+        </tr>
+    </table>
+</form>
+
+@(await Component.InvokeAsync(nameof(SaveCancelButtonsPair), new
+{
+    model = new SaveCancelButtonsPairModel
+    {
+        Url = Url.Action("Edit"),
+        FormId = "#frmEditUser"
+    }
+}))

@@ -1,0 +1,52 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{C1F09D17-E655-4DC1-B29C-C80F2A9A9710}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{1EC7F505-3B8E-46C6-ACF9-C6309F95131B}"
+	ProjectSection(SolutionItems) = preProject
+		global.json = global.json
+	EndProjectSection
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "LykkeMarketMakers.Web", "src\LykkeMarketMakers.Web\LykkeMarketMakers.Web.xproj", "{6B3C42DD-9FA8-4F9D-88B7-819EF20161F3}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "01. Infrastructure", "01. Infrastructure", "{8C0C1071-2231-4D71-8B29-1373E99AC419}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "02. Repositories", "02. Repositories", "{52765E8E-8022-4455-8ACC-E7F6ECBB9E8F}"
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "LykkeMarketMakers.Core", "src\LykkeMarketMakers.Core\LykkeMarketMakers.Core.xproj", "{11843326-DA9D-4F54-851E-722EC6C755A3}"
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "LykkeMarketMakers.AzureRepositories", "src\LykkeMarketMakers.AzureRepositories\LykkeMarketMakers.AzureRepositories.xproj", "{B51CA553-0445-4FB6-8BD2-E127A4C7BC94}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6B3C42DD-9FA8-4F9D-88B7-819EF20161F3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6B3C42DD-9FA8-4F9D-88B7-819EF20161F3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6B3C42DD-9FA8-4F9D-88B7-819EF20161F3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6B3C42DD-9FA8-4F9D-88B7-819EF20161F3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{11843326-DA9D-4F54-851E-722EC6C755A3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{11843326-DA9D-4F54-851E-722EC6C755A3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{11843326-DA9D-4F54-851E-722EC6C755A3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{11843326-DA9D-4F54-851E-722EC6C755A3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B51CA553-0445-4FB6-8BD2-E127A4C7BC94}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B51CA553-0445-4FB6-8BD2-E127A4C7BC94}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B51CA553-0445-4FB6-8BD2-E127A4C7BC94}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B51CA553-0445-4FB6-8BD2-E127A4C7BC94}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{6B3C42DD-9FA8-4F9D-88B7-819EF20161F3} = {C1F09D17-E655-4DC1-B29C-C80F2A9A9710}
+		{8C0C1071-2231-4D71-8B29-1373E99AC419} = {1EC7F505-3B8E-46C6-ACF9-C6309F95131B}
+		{52765E8E-8022-4455-8ACC-E7F6ECBB9E8F} = {1EC7F505-3B8E-46C6-ACF9-C6309F95131B}
+		{11843326-DA9D-4F54-851E-722EC6C755A3} = {8C0C1071-2231-4D71-8B29-1373E99AC419}
+		{B51CA553-0445-4FB6-8BD2-E127A4C7BC94} = {52765E8E-8022-4455-8ACC-E7F6ECBB9E8F}
+	EndGlobalSection
+EndGlobal

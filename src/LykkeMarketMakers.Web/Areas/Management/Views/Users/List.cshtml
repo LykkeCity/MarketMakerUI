@@ -1,0 +1,75 @@
+﻿@using System.Threading.Tasks
+@using LykkeMarketMakers.Web.Models.ViewComponentsViewModels
+@using LykkeMarketMakers.Web.Translates
+@using LykkeMarketMakers.Web.ViewComponents
+@model LykkeMarketMakers.Web.Areas.Management.Models.UsersListViewModel
+
+@{
+    Layout = null;
+}
+<style>
+    .table .btn {
+        margin: 0;
+    }
+</style>
+<h1>@Phrases.Users</h1>
+<div>
+    @(await Component.InvokeAsync(nameof(DialogButton), new
+        {
+            model = new DialogButtonModel
+            {
+                ButtonClasses = "btn-success btn-sm",
+                IconClasses = "glyphicon-plus-sign",
+                Url = Url.Action("EditDialog"),
+                ButtonText = Phrases.AddUser
+            }
+        })
+    )
+</div>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>@Phrases.FullName</th>
+            <th>@Phrases.Roles</th>
+            <th style="width: 100px;" class="text-center">Admin</th>
+            <th style="width: 50px;"></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var user in Model.Users)
+        {
+            <tr>
+                <td>
+                    @user.Id
+                </td>
+                <td>
+                    @user.FullName
+                </td>
+                <td>
+                    @foreach (var role in user.Roles)
+                    {
+                        <span class="badge">@(Model.Roles.ContainsKey(role) ? Model.Roles[role].Name : role)</span>
+                    }
+                </td>
+                <td class="text-center">
+                    <span class="glyphicon @(user.IsAdmin ? "glyphicon-ok-sign" : "glyphicon-unchecked")" aria-hidden="true"></span>
+                </td>
+                <td class="text-center">
+                    @if (user.Id != "admin")
+                    {
+                        @(await Component.InvokeAsync(nameof(DialogButton), new
+                            {
+                                model = new DialogButtonModel
+                                {
+                                    Url = Url.Action("EditDialog"),
+                                    Id = user.Id
+                                }
+                            })
+                        )
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

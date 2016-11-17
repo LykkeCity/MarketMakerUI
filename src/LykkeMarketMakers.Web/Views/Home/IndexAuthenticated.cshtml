@@ -1,0 +1,21 @@
+﻿@using LykkeMarketMakers.Web.Extensions
+@{
+
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section scripts
+{
+    @if (Context.Request.IsMobileBrowser())
+    {
+        <script>
+            requests.doRequest({ url: '@Url.Action("Layout")', divResult: '#pamain' });
+        </script>
+    }
+    else
+    {
+        <script>
+            requests.doRequest({ url: '@Url.Action("Layout")', divResult: 'body' });
+        </script>
+    }
+}

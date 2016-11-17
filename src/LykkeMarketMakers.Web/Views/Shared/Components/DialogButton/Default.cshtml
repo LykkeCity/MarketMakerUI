@@ -1,0 +1,13 @@
+﻿@using System.Threading.Tasks
+@using LykkeMarketMakers.Web.Models.ViewComponentsViewModels
+@model DialogButtonModel
+
+@{
+    string command = string.IsNullOrEmpty(Model.Id)
+        ? $"ui.showDialog('{Model.Url}')"
+        : $"ui.showDialog('{Model.Url}', {{ id: '{Model.Id}' }})";
+}
+
+<button class="btn @Model.ButtonClasses" onclick="@command">
+    <span class="glyphicon @Model.IconClasses" aria-hidden="true"></span> @Model.ButtonText
+</button>

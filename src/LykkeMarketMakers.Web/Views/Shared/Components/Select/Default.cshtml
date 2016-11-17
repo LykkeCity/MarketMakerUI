@@ -1,0 +1,27 @@
+﻿@using System.Threading.Tasks
+@using Lykke.Common
+@using LykkeMarketMakers.Web.Models.ViewComponentsViewModels
+@model SelectModel
+
+@{
+    string id = Model.Name.FirstLetterLowCase();
+}
+
+<div class="form-group">
+    @if (!string.IsNullOrEmpty(Model.Caption))
+    {
+        <label class="control-label" for="@id">@Model.Caption</label>
+    }
+    <select id="@id" name="@Model.Name" class="form-control @Model.SelectClasses" multiple="@(Model.IsMultiple ? "multiple" : null)" style="@(Model.IsMultiple ? $"height: {Model.Height}" : null)">
+        @if (Model.HasOptional && !Model.IsMultiple)
+        {
+            <option value="">@Model.OptionalText</option>
+        }
+        @foreach (var item in Model.Values)
+        {
+            <option value="@item.Key" selected="@(Model.IsMultiple && Model.CurrentValues.Contains(item.Key)
+                                                      ? "selected"
+                                                      : Model.CurrentValue == item.Key ? "selected" : null)">@item.Value</option>
+        }
+    </select>
+</div>

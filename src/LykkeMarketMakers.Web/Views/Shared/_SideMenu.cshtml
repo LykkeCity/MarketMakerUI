@@ -1,0 +1,26 @@
+﻿@using System.Threading.Tasks
+@using LykkeMarketMakers.Core.Enums
+@using LykkeMarketMakers.Core.Extensions
+@using LykkeMarketMakers.Web.Models.HomeViewModels
+@using LykkeMarketMakers.Web.Translates
+@model MainMenuViewModel
+
+@{
+    Layout = null;
+}
+
+<ul class="sidemenu" style="width: 201px;">
+    <li class="smi" data-url="@Url.Action("ChangeMyPasswordForm", "Password", new {area = "Management"})" data-text="@Phrases.ChangeMyPassword"></li>
+
+    @*@if (Model.UserRolesPair.HasAccessToFeature(UserFeatureAccess.MenuKyc))
+    {
+        <li id="smi@(MenuBadges.Kyc)" class="smi" data-url="@Url.Action("Index", "DocumentsChecking", new {area = "Kyc"})" data-text="KYC"></li>
+    }*@
+    
+    @if (Model.UserRolesPair.HasAccessToFeature(UserFeatureAccess.MenuUsers))
+    {
+        <li class="smi" data-url="@Url.Action("Index", "Users", new {area = "Management"})" data-text="@Phrases.Users"></li>
+    }
+
+    <li class="smi"><a href="@Url.Action("LogOut","Home")">@Phrases.Logout</a></li>
+</ul>

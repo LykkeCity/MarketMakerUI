@@ -1,0 +1,63 @@
+﻿@using System.Threading.Tasks
+@using LykkeMarketMakers.Web.Models.ViewComponentsViewModels
+@using LykkeMarketMakers.Web.Translates
+@using LykkeMarketMakers.Web.ViewComponents
+@model LykkeMarketMakers.Web.Areas.Management.Models.RolesListViewModel
+
+@{
+    Layout = null;
+}
+
+<h1>@Phrases.Roles</h1>
+<div>
+    @(await Component.InvokeAsync(nameof(DialogButton), new
+        {
+            model = new DialogButtonModel
+            {
+                ButtonClasses = "btn-success btn-sm",
+                IconClasses = "glyphicon-plus-sign",
+                Url = Url.Action("EditDialog"),
+                ButtonText = Phrases.AddRole
+            }
+        })
+    )
+</div>
+
+<table class="table">
+    <tr>
+        <th>
+            @Phrases.Name
+        </th>
+        <th>
+            @Phrases.Access
+        </th>
+        <th style="width: 50px;">
+
+        </th>
+    </tr>
+    @foreach (var userRole in Model.UserRoles)
+    {
+        <tr>
+            <td>
+                @userRole.Name
+            </td>
+            <td>
+                @foreach (var f in userRole.Features)
+                {
+                    <span class="badge">@f@*.GetCaption()*@</span>
+                }
+            </td>
+            <td>
+                @(await Component.InvokeAsync(nameof(DialogButton), new
+                {
+                    model = new DialogButtonModel
+                    {
+                        Url = Url.Action("EditDialog"),
+                        Id = userRole.Id
+                    }
+                })
+                )
+            </td>
+        </tr>
+    }
+</table>

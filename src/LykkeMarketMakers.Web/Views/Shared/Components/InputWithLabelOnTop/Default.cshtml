@@ -1,0 +1,15 @@
+﻿@using System.Threading.Tasks
+@using LykkeMarketMakers.Web.Models.ViewComponentsViewModels
+@using Lykke.Common
+@model InputWithLabelModel
+
+@{
+    string id = Model.Name.FirstLetterLowCase();
+}
+<div class="form-group">
+    <label class="control-label" for="@id">@Model.Caption</label>
+    <input type="@(string.IsNullOrEmpty(Model.Type) ? "text" : Model.Type)" id="@id" name="@Model.Name" 
+           value="@(string.IsNullOrEmpty(Model.Value) ? null : Model.Value)"  class="form-control @(Model.Lg ? "input-lg" : null) @(Model.HasFocus ? "setCursor" : null)" 
+           placeholder="@(string.IsNullOrEmpty(Model.Placeholder) ? null : Model.Placeholder)" 
+           readonly="@(Model.ReadOnly ? "readonly" : null)"/>
+</div>

@@ -1,0 +1,22 @@
+﻿@using System.Threading.Tasks
+@using Lykke.Common
+@using LykkeMarketMakers.Web.Models.ViewComponentsViewModels
+@model SelectModel
+
+@{
+    string id = Model.Name.FirstLetterLowCase();
+}
+
+<div class="form-group">
+    <label class="control-label" for="@id">@Model.Caption</label>
+    <select id="@id" name="@Model.Name" class="form-control @Model.SelectClasses">
+        @if (Model.HasOptional)
+        {
+            <option value="">@Model.OptionalText</option>
+        }
+        @foreach (var item in Model.Values)
+        {
+            <option value="@item.Key" selected="@(Model.CurrentValue == @item.Key ? "selected" : null)">@item.Value</option>
+        }
+    </select>
+</div>

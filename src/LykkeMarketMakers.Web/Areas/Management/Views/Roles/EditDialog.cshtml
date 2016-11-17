@@ -1,0 +1,44 @@
+﻿@using System.Threading.Tasks
+@using Lykke.Common
+@using LykkeMarketMakers.Core.Enums
+@using LykkeMarketMakers.Web.Extensions
+@using LykkeMarketMakers.Web.Models.ViewComponentsViewModels
+@using LykkeMarketMakers.Web.Translates
+@using LykkeMarketMakers.Web.ViewComponents
+@model LykkeMarketMakers.Web.Areas.Management.Models.EditRoleDialogViewModel
+
+@{
+    Layout = "~/Views/Shared/_ModalDialogLayout.cshtml";
+}
+<form id="frmEditRole">
+    @Html.Hidden("Id", Model.UserRole.Id)
+    @(await Component.InvokeAsync(nameof(InputWithLabelOnTop), new
+      {
+          model = new InputWithLabelModel
+          {
+              Name = "Name",
+              Caption = Phrases.Name,
+              Value = Model.UserRole.Name
+          }
+      }))
+    
+    @(await Component.InvokeAsync(nameof(Select), new
+      {
+          model = new SelectModel
+          {
+              Name = "Features",
+              IsMultiple = true,
+              Values = Utils.Enumerate<UserFeatureAccess>().Select(itm => new KeyValuePair<string, string>(itm.ToString(), itm.GetCaption())).ToList(),
+              CurrentValues = Model.UserRole.Features.Select(itm => itm.ToString()).ToArray()
+          }
+      }))
+</form>
+
+@(await Component.InvokeAsync(nameof(SaveCancelButtonsPair), new
+{
+    model = new SaveCancelButtonsPairModel
+    {
+        Url = Url.Action("Edit"),
+        FormId = "#frmEditRole"
+    }
+}))
