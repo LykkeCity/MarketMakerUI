@@ -16,7 +16,7 @@
         <link rel="stylesheet" href="~/css/countries.css" asp-append-version="true" />
         <link rel="stylesheet" href="~/css/remote-ui.css" asp-append-version="true" />
     </environment>
-    <environment names="Staging,Production">
+    <environment names="Release">
         <link rel="stylesheet" href="~/css/styles.min.css" asp-append-version="true" />
     </environment>
     @RenderSection("styles", required: false)
@@ -37,7 +37,7 @@
         <script src="~/js/HistoryManager.js" asp-append-version="true"></script>
         <script src="~/js/MainMenu.js" asp-append-version="true"></script>
     </environment>
-    <environment names="Staging,Production">
+    <environment names="Release">
         <script src="~/js/scripts.min.js" asp-append-version="true"></script>
     </environment>
 

@@ -241,22 +241,3 @@ ModelManifest.xml
 
 # FAKE - F# Make
 .fake/
-
-**/wwwroot/js/scripts.min.js
-**/wwwroot/js/scripts.min.js.map
-
-**/wwwroot/js/HistoryManager.js
-**/wwwroot/js/HistoryManager.js.map
-**/wwwroot/js/Layout.js
-**/wwwroot/js/Layout.js.map
-**/wwwroot/js/MainMenu.js
-**/wwwroot/js/MainMenu.js.map
-**/wwwroot/js/ModalDialog.js
-**/wwwroot/js/ModalDialog.js.map
-**/wwwroot/js/Requests.js
-**/wwwroot/js/Requests.js.map
-**/wwwroot/js/UiMobile.js
-**/wwwroot/js/UiMobile.js.map
-**/wwwroot/js/ui.js
-**/wwwroot/js/ui.js.map
-**/wwwroot/css/styles.min.css

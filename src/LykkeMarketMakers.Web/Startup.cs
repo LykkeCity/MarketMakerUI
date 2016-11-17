@@ -37,8 +37,7 @@ namespace LykkeMarketMakers.Web
         {
             var builder = new ConfigurationBuilder()
                 .SetBasePath(env.ContentRootPath)
-                .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
-                .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
+                .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
                 .AddEnvironmentVariables();
 
             Configuration = builder.Build();
@@ -187,12 +186,6 @@ namespace LykkeMarketMakers.Web
             {
                 WriteSettingsReadError(log, nameof(settings.Db.MarketMakerConnString));
                 throw new ArgumentNullException(nameof(settings.Db.MarketMakerConnString));
-            }
-
-            if (string.IsNullOrEmpty(settings.Db.LogsConnString))
-            {
-                WriteSettingsReadError(log, nameof(settings.Db.LogsConnString));
-                throw new ArgumentNullException(nameof(settings.Db.LogsConnString));
             }
         }
 
